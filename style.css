@@ -19,10 +19,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   font-family: var(--ff-primary);
 
   transition: 0.2s;
+}
+
+#half {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50vw;
+  transition: 0.5s;
 }
 
 .container {
@@ -32,7 +42,7 @@
   gap: 1rem;
   margin-bottom: 20vh;
   color: #fff;
-
+  z-index: 1;
 }
 
 .title {
@@ -44,27 +54,37 @@
 
 .switch {
   display: flex;
+  box-sizing: content-box;
   text-transform: uppercase;
   font-weight: 700;
-  background: #444;
+  background: #222;
   border-radius: 0.5rem;
-  width: 150px;
+  /* width: 150px; */
   overflow: hidden;
+  padding: 0 6px;
 }
 
 .switch div {
   padding: 2px;
-  flex-grow: 1;
   text-align: center;
   cursor: pointer;
 }
 
-.easy-mode .easy {
-  background: #222;
+.difficulty-title {
+  margin-right: 4px;
 }
 
-.hard-mode .hard {
-  background: #222;
+.dif {
+  box-sizing: content-box;
+  transition: 0.2s;
+}
+
+.dif:hover {
+  background: #333;
+}
+
+.s-dif {
+  background: #444;
 }
 
 #answer {
