@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+  <title>Hex Guesser</title>
+
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <h1 class="title">Guess The Hex</h1>
+      <div class="switch easy-mode">
+        <div class="easy">Easy</div>
+        <div class="hard">Hard</div>
+      </div>
+      <div id="answer"></div>
+      <div class="hex-input">
+        <span>#</span>
+        <input type="text" maxlength="6" id="hex-input">
+      </div>
+      <button class="submit" id="submit" onclick="submit()">That's it</button>
+    </div>
+  </div>
+
+  <noscript>
+    <strong>We're sorry but hex-gesser doesn't work properly without JavaScript
+      enabled. Please enable it to continue.</strong>
+  </noscript>
+  <script src="/main.js"></script>
+</body>
+
+</html>
