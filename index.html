@@ -17,7 +17,7 @@
 
 <body>
   <div id="app">
-    <div id="half"></div>
+    <!-- <div id="half"></div> -->
     <div class="container">
       <h1 class="title">Guess The Hex</h1>
       <div class="switch easy-mode">
@@ -26,7 +26,8 @@
         <div class="dif" id="d2" onclick="changeDif(1)">2</div>
         <div class="dif" id="d3" onclick="changeDif(2)">3</div>
         <div class="dif" id="d4" onclick="changeDif(3)">4</div>
-        <!-- <div class="dif" id="d5" onclick="changeDif(4)">5</div> -->
+        <div class="dif" id="d5" onclick="changeDif(4)">5</div>
+        <div class="dif" id="d6" onclick="changeDif(5)">6</div>
       </div>
       <div id="answer"></div>
       <div class="hex-input">
@@ -34,6 +35,13 @@
         <input type="text" maxlength="6" id="hex-input">
       </div>
       <button class="submit" id="submit" onclick="submit()">That's it</button>
+
+      <div id="keyboard">
+        <div id="back">←</div>
+        <div class="key">1</div>
+        <div class="key">2</div>
+        <div class="key">3</div>
+      </div>
     </div>
   </div>
 

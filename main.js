@@ -3,14 +3,17 @@ const input = document.getElementById("hex-input");
 const answer = document.getElementById("answer");
 const submitBtn = document.getElementById("submit");
 const half = document.getElementById("half");
+const keyboard = document.getElementById("keyboard");
 
+const hex = ["3F", "28F", "37BF", "13579BDF", "0123456789ABCDEF"];
 let theHex = "#000000";
 let answerState = false;
-let difficulty = 0;
+let difficulty = parseInt(localStorage.getItem("difficulty")) || 0;
+const maxDif = 6;
 
 const difficultyBtns = [];
 
-for (let i = 1; i <= 4; i++) {
+for (let i = 1; i <= maxDif; i++) {
   const element = document.querySelector(`#d${i}`);
   difficultyBtns.push(element);
 }
@@ -18,17 +21,21 @@ for (let i = 1; i <= 4; i++) {
 const randomHex = () => {
   // let hex = "0123456789ABCDEF";
   // let hex = "13579BDF";
-  let hex = ["37BF", "13579BDF", "0123456789ABCDEF"];
+  // let hex = ["3F", "28F", "37BF", "13579BDF", "0123456789ABCDEF"];
   let color = "#";
-  if (difficulty < 3) {
+  if (difficulty < hex.length) {
     for (let i = 0; i < 3; i++) {
-      let pColor = hex[difficulty][Math.floor(Math.random() * hex[difficulty].length)];
+      let pColor =
+        hex[difficulty][Math.floor(Math.random() * hex[difficulty].length)];
       color += pColor.repeat(2);
     }
     return color;
   }
   for (let i = 0; i < 6; i++) {
-    let pColor = hex[2][Math.floor(Math.random() * hex[2].length)];
+    let pColor =
+      hex[hex.length - 1][
+        Math.floor(Math.random() * hex[hex.length - 1].length)
+      ];
     color += pColor;
   }
 
@@ -47,12 +54,30 @@ const changeHex = () => {
 
 const changeDif = (dif) => {
   answerState = false;
-  changeHex();
   difficulty = dif;
+  changeHex();
+  setKeyboard();
+  localStorage.setItem("difficulty", difficulty);
   difficultyBtns.forEach((btn) => {
     btn.classList.remove("s-dif");
   });
+  console.log(dif);
+  console.log(difficultyBtns);
   difficultyBtns[dif].classList.add("s-dif");
+};
+
+const setKeyboard = () => {
+  keyboard.innerHTML = "";
+  // change grid-template-columns of keyboard based on difficulty
+  keyboard.style.gridTemplateColumns = `repeat(${
+    difficulty < 2 ? difficulty + 2 : 4
+  }, 1fr)`;
+
+  const keys = hex[difficulty === 5 ? 4 : difficulty]
+    .split("")
+    .map((n) => `<div class="key" onclick="input.value += '${n}'">${n}</div>`)
+    .join("");
+  keyboard.innerHTML = keys;
 };
 
 function submit() {
@@ -109,4 +134,5 @@ input.addEventListener("keyup", (e) => {
   }
 });
 changeHex();
+setKeyboard();
 difficultyBtns[difficulty].classList.add("s-dif");
